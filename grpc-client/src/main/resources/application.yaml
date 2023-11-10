@@ -1,0 +1,7 @@
+grpc:
+  client:
+    time-reader-0:
+      address: 'static://host.docker.internal:9090'
+      negotiationType: plaintext
+
+streaming-time-duration: 10

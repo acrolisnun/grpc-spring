@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option java_package = "com.pgse.grpc.generated";
+option java_multiple_files = true;
+
+service TimeReader {
+  // Server Streaming RPC
+  rpc readTime(TimeReaderRequest) returns (stream TimeReaderResponse) {}
+}
+
+message TimeReaderRequest {
+  // Streaming time duration in seconds
+  int32 streaming_time_duration = 1;
+}
+
+message TimeReaderResponse {
+  google.protobuf.Timestamp timestamp = 1;
+}

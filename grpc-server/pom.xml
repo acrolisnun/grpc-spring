@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>grpc-spring</artifactId>
+        <groupId>com.pgse.grpc</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>grpc-server</artifactId>
+
+    <properties>
+        <com.pgse.grpc-proto.version>${project.version}</com.pgse.grpc-proto.version>
+        <org.springframework.boot.spring-boot-starter.version>3.1.5</org.springframework.boot.spring-boot-starter.version>
+        <org.springframework.boot.spring-boot-maven-plugin.version>3.1.5</org.springframework.boot.spring-boot-maven-plugin.version>
+        <net.devh.grpc-server-spring-boot-starter.version>2.15.0.RELEASE</net.devh.grpc-server-spring-boot-starter.version>
+        <com.goog.cloud.tools.jib-maven-plugin.version>2.8.0</com.goog.cloud.tools.jib-maven-plugin.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${org.springframework.boot.spring-boot-maven-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>${com.goog.cloud.tools.jib-maven-plugin.version}</version>
+                <configuration>
+                    <from>
+                        <image>openjdk:17-alpine</image>
+                    </from>
+                    <to>
+                        <image>com.pgse/grpc-spring/grpc-spring-server:${project.version}</image>
+                    </to>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>build-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>dockerBuild</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.pgse.grpc</groupId>
+            <artifactId>grpc-proto</artifactId>
+            <version>${com.pgse.grpc-proto.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.devh</groupId>
+            <artifactId>grpc-server-spring-boot-starter</artifactId>
+            <version>${net.devh.grpc-server-spring-boot-starter.version}</version>
+        </dependency>
+    </dependencies>
+</project>
